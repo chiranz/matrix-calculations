@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import SizeForm from "./components/SizeForm";
+import { getFormattedMatrix } from "./helpers";
+import MatrixLayout from "./components/MatrixLayout";
+import { useImmer } from "use-immer";
 
 function App() {
+  const [matrixSize, setMatrixSize] = useState({});
+  const [leftMatrix, updateLeftMatrix] = useImmer({});
+  const [rightMatrix, updateRightMatrix] = useImmer({});
+  useEffect(() => {
+    if (Object.values(matrixSize).length) {
+      const formattedMatrix = getFormattedMatrix(
+        matrixSize.rows,
+        matrixSize.cols
+      );
+      updateLeftMatrix(() => ({
+        ...formattedMatrix,
+      }));
+      updateRightMatrix(() => ({
+        ...formattedMatrix,
+      }));
+    }
+  }, [matrixSize, updateLeftMatrix, updateRightMatrix]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header className="App-header">Matrix Calculations</header>
+      <main className="main-container">
+        <SizeForm setMatrixSize={setMatrixSize} />
+        <MatrixLayout
+          {...{
+            leftMatrix,
+            rightMatrix,
+            updateLeftMatrix,
+            updateRightMatrix,
+            matrixSize,
+          }}
+        />
+      </main>
     </div>
   );
 }
