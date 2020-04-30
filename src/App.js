@@ -29,15 +29,19 @@ function App() {
       <header className="App-header">Matrix Calculations</header>
       <main className="main-container">
         <SizeForm setMatrixSize={setMatrixSize} />
-        <MatrixLayout
-          {...{
-            leftMatrix,
-            rightMatrix,
-            updateLeftMatrix,
-            updateRightMatrix,
-            matrixSize,
-          }}
-        />
+        {Object.values(matrixSize).length ? (
+          <MatrixLayout
+            {...{
+              leftMatrix,
+              rightMatrix,
+              updateLeftMatrix,
+              updateRightMatrix,
+              matrixSize,
+            }}
+          />
+        ) : (
+          ""
+        )}
       </main>
     </div>
   );

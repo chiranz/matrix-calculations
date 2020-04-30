@@ -34,12 +34,12 @@ export default function MatrixLayout({
   };
   // Operate matrix with multiplication
   const handleMultiply = () => {
-    const { result, error } = multiplyMatrix(leftMatrix, rightMatrix);
+    const { results, error } = multiplyMatrix(leftMatrix, rightMatrix);
     if (error) {
       setGlobalError(error);
       return;
     }
-    setResult(result);
+    setResult(results);
   };
 
   // TODO: make this work
