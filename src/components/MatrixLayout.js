@@ -34,25 +34,22 @@ export default function MatrixLayout({
   };
   // Operate matrix with multiplication
   const handleMultiply = () => {
-    const { result, error } = multiplyMatrix(leftMatrix, rightMatrix);
+    const { results, error } = multiplyMatrix(leftMatrix, rightMatrix);
     if (error) {
       setGlobalError(error);
       return;
     }
-    setResult(result);
+    setResult(results);
   };
 
-  // TODO: make this work
   const handleAdd = () => {
     const result = addMatrix(leftMatrix, rightMatrix);
     setResult(result);
   };
-  // TODO: make this work
   const handleSubstract = () => {
     const result = substractMatrix(leftMatrix, rightMatrix);
     setResult(result);
   };
-  // TODO: Handle Input matrix
   const handleInputMatrix = () => {
     const isLeftEmpty = isMatrixFieldEmpty(leftMatrix);
     const isRightEmpty = isMatrixFieldEmpty(rightMatrix);
