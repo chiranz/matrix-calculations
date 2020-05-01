@@ -6,11 +6,11 @@ export default function MatrixField({ field, onChange }) {
     const value = rawValue ? rawValue : null;
     onChange({ ...field, value });
   };
-
+  const fieldValue = field.value === null ? "" : field.value;
   return (
     <input
       className="field"
-      value={field.value || ""}
+      value={fieldValue}
       readOnly={field.readOnly}
       onChange={handleChange}
     />

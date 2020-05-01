@@ -49,6 +49,10 @@ export const getFormattedMatrixFromArray = (array, rows, cols) => {
     }
     result.rows.push(row);
   }
+  result.size = {
+    rows,
+    cols,
+  };
   return result;
 };
 
@@ -59,6 +63,17 @@ export const getFlatMatrix = (matrix) => {
     .flat();
   return flatMatrix;
 };
+
+export const getReadOnlyMatrix = (matrix) => {
+  const flatMatrix = getFlatMatrix(matrix);
+  const readOnlyMatrix = getFormattedMatrixFromArray(
+    flatMatrix,
+    matrix.size.rows,
+    matrix.size.cols
+  );
+  return readOnlyMatrix;
+};
+
 // Find if any field is empty in a given matrix
 export const isMatrixFieldEmpty = (matrix) => {
   const matrixValues = getFlatMatrix(matrix);

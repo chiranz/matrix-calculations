@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MatrixBoard from "./MatrixBoard";
 import {
   isMatrixFieldEmpty,
   addMatrix,
   substractMatrix,
   multiplyMatrix,
+  getReadOnlyMatrix,
 } from "../helpers/matrixHelper";
 
 export default function MatrixLayout({
@@ -19,6 +20,12 @@ export default function MatrixLayout({
   const [errorRight, setErrorRight] = useState("");
   const [errorGlobal, setGlobalError] = useState("");
   const [result, setResult] = useState(null);
+
+  useEffect(() => {
+    setErrorLeft("");
+    setErrorRight("");
+    setShowOperation(false);
+  }, [matrixSize]);
 
   const handleLeftMatrixChange = (field) => {
     setErrorLeft("");
@@ -62,6 +69,11 @@ export default function MatrixLayout({
     if (isLeftEmpty || isRightEmpty) {
       return;
     }
+    const readOnlyLeftMatrix = getReadOnlyMatrix(leftMatrix);
+    const readOnlyRightMatrix = getReadOnlyMatrix(rightMatrix);
+    console.log({ readOnlyLeftMatrix, readOnlyRightMatrix });
+    updateLeftMatrix(() => readOnlyLeftMatrix);
+    updateRightMatrix(() => readOnlyRightMatrix);
     setShowOperation(true);
   };
 
