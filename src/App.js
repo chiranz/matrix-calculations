@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import SizeForm from "./components/SizeForm";
-import { getFormattedMatrix } from "./helpers";
+import { getFormattedMatrix } from "./helpers/matrixHelper";
 import MatrixLayout from "./components/MatrixLayout";
 import { useImmer } from "use-immer";
 

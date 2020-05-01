@@ -5,7 +5,7 @@ import {
   addMatrix,
   substractMatrix,
   multiplyMatrix,
-} from "../helpers";
+} from "../helpers/matrixHelper";
 
 export default function MatrixLayout({
   leftMatrix,
