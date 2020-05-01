@@ -71,7 +71,6 @@ export default function MatrixLayout({
     }
     const readOnlyLeftMatrix = getReadOnlyMatrix(leftMatrix);
     const readOnlyRightMatrix = getReadOnlyMatrix(rightMatrix);
-    console.log({ readOnlyLeftMatrix, readOnlyRightMatrix });
     updateLeftMatrix(() => readOnlyLeftMatrix);
     updateRightMatrix(() => readOnlyRightMatrix);
     setShowOperation(true);
